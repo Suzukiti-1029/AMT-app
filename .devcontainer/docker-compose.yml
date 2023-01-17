@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  flask:
+    build: ./
+    container_name: dev-amtapp-flask
+    ports:
+      - "50000:5000"
+    volumes:
+      - "/Users/suzukiti/dev/AMT-app:/home/amtapp"
+    command: /bin/bash
+    tty: true
+    depends_on:
+      - "mysql"
+  mysql:
+    image: mysql:8.0.31-oracle
+    container_name: dev-amtapp-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "256133" #TODO mysql設定・接続時変更
+    ports:
+      - "3306:3306"
+    restart: always

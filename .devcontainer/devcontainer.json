@@ -1,0 +1,25 @@
+{
+  "name": "dev-amtapp",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "flask",
+  "workspaceFolder": "/home/amtapp",
+  "forwardPorts": ["50000:5000"],
+	"extensions": [
+		"aaron-bond.better-comments", // コメント見やすく
+		"KevinRose.vsc-python-indent", // インデント精度向上
+		"njpwerner.autodocstring", // 関数説明フォーマット生成
+		"ms-python.vscode-pylance", // 型チェック・ライブラリ使いやすく
+		"esbenp.prettier-vscode", // 保存時リファクタリング
+		"ms-python.python", // python
+		"formulahendry.code-runner", // デバッグ効率化
+		"LittleFoxTeam.vscode-python-test-adapter", // テスト効率化
+		"Gruntfuggly.todo-tree", // todo抽出
+		"samuelcolvin.jinjahtml", // テンプレートエンジンコーディング効率化
+		"formulahendry.vscode-mysql", // mysqlに接続
+		"streetsidesoftware.code-spell-checker", // スペルミス防止
+		"mhutchie.git-graph", // Git見やすく
+		"eamodio.gitlens", // Git見やすく
+		"oderwat.indent-rainbow", // インデント分かりやすく
+		"mosapride.zenkaku" // 全角スペースミス防止
+]
+}
