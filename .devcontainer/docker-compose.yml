@@ -16,7 +16,10 @@ services:
     image: mysql:8.0.31-oracle
     container_name: dev-amtapp-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "256133" #TODO mysql設定・接続時変更
+      MYSQL_ROOT_PASSWORD: "87170dd7a96c29461e9819fc4179b2e0b7163ad95e485cbde5d109f8c7f84d17" #TODO セキュリティ
     ports:
       - "3306:3306"
     restart: always
+    volumes:
+      - "./mysql/init/:/docker-entrypoint-initdb.d/"
+      - "./mysql/config/:/etc/mysql/conf.d/"
