@@ -30,33 +30,4 @@ def create_app(test_config=None):
   except OSError:
     pass
 
-  from . import db
-  db.init_app(app)
-
-  import functools
-  from flask import (
-    Blueprint, flash, g, redirect,
-    render_template, request, session, url_for
-  )
-  from app.db import get_db
-
-  @app.route('/')
-  def test():
-    username = secrets.token_hex()
-    password = secrets.token_hex()
-    testdb = get_db()
-
-    testdb.execute(
-      'INSERT INTO user(username, password) VALUES (?, ?)',
-      (username, password)
-    )
-
-    testdb.commit()
-    users = testdb.execute('SELECT * FROM user').fetchall()
-
-    string = ""
-    for user in users:
-      string = string + user['username'] + "：" + user['password'] + "<br>"
-    return string
-
   return app
