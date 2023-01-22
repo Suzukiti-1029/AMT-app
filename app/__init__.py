@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from app.database import init_db
+import app.models
 
 import secrets
 
