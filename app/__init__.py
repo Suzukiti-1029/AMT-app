@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from app.database import init_db
 
 import secrets
 
@@ -29,5 +30,7 @@ def create_app(test_config=None):
     os.makedirs(app.instance_path)
   except OSError:
     pass
+
+  init_db(app)
 
   return app
