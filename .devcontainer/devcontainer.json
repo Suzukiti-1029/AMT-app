@@ -5,7 +5,6 @@
   "workspaceFolder": "/home/amtapp",
   "forwardPorts": ["50000:5000"],
 	"extensions": [
-		"aaron-bond.better-comments", // コメント見やすく
 		"KevinRose.vsc-python-indent", // インデント精度向上
 		"njpwerner.autodocstring", // 関数説明フォーマット生成
 		"ms-python.vscode-pylance", // 型チェック・ライブラリ使いやすく
