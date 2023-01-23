@@ -57,5 +57,5 @@ source venv/bin/activate
 python -m pip install --upgrade pip
 pip -V
 # 開発に必要パッケージをインストール
-pip install flask flask-sqlalchemy gunicorn --use-pep517
+pip install flask flask-sqlalchemy pymysql flask-migrate gunicorn  --use-pep517
 # deactivate

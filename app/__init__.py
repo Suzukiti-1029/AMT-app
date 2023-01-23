@@ -1,13 +1,22 @@
 import os
 from flask import Flask
+from app.database import init_db
+import app.models
 
 import secrets
 
 def create_app(test_config=None):
   app = Flask(__name__, instance_relative_config=True)
-  app.config.from_mapping(
-    SECRET_KEY= '256133', #TODO デプロイ時secrets.token_hex()に変更
-    DATABASE=os.path.join(app.instance_path, 'app.sqlite'),
+  app.config.from_mapping( # TODO デプロイ：設定ファイルを外部に分離
+    SECRET_KEY='256133',
+    SQLALCHEMY_DATABASE_URI='mysql+pymysql://{user}:{password}@{host}/{db_name}?charset=utf8'.format(**{
+      'user': 'suzukiti',
+      'password': '256133',
+      'host': 'mysql',
+      'db_name': 'dev_amtapp'
+    }),
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    SQLALCHEMY_ECHO=True,
   )
 
   if test_config is None:
@@ -23,33 +32,6 @@ def create_app(test_config=None):
   except OSError:
     pass
 
-  from . import db
-  db.init_app(app)
-
-  import functools
-  from flask import (
-    Blueprint, flash, g, redirect,
-    render_template, request, session, url_for
-  )
-  from app.db import get_db
-
-  @app.route('/')
-  def test():
-    username = secrets.token_hex()
-    password = secrets.token_hex()
-    testdb = get_db()
-
-    testdb.execute(
-      'INSERT INTO user(username, password) VALUES (?, ?)',
-      (username, password)
-    )
-
-    testdb.commit()
-    users = testdb.execute('SELECT * FROM user').fetchall()
-
-    string = ""
-    for user in users:
-      string = string + user['username'] + "：" + user['password'] + "<br>"
-    return string
+  init_db(app)
 
   return app
