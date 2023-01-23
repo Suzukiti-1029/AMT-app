@@ -34,4 +34,7 @@ def create_app(test_config=None):
 
   init_db(app)
 
+  from .controller import amt
+  app.register_blueprint(amt.bp)
+
   return app
