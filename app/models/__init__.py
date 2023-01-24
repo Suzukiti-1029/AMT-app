@@ -1,5 +1,5 @@
-from .models import Sample
+from .models import Amt_fluctuations
 
 __all__ = [
-    Sample,
+    Amt_fluctuations,
 ]
