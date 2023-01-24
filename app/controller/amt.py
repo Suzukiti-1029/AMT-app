@@ -8,3 +8,7 @@ bp = Blueprint('amt', __name__, url_prefix='/amt')
 def index():
   amt_flucs = Amt_fluctuations.query.all()
   return render_template('amt/index.html', amt_flucs=amt_flucs)
+
+@bp.route('/create', methods=('GET'))
+def create():
+  return render_template('amt/create.html')
