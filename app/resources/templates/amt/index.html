@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}収支記録一覧{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>日付</th>
+        <th>金額(円)</th>
+        <th>用途</th>
+        <th>メモ</th>
+        <th>作成時間</th>
+        <th>更新時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for amt_fluc in amt_flucs %}
+        <tr>
+          <td>{{ amt_fluc['amt_fluctuations_id'] }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_date'].strftime('%Y/%m/%d') }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_amount'] }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_purpose'] }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_note'] }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_create_at'].strftime('%Y/%m/%d %H:%M:%S') }}</td>
+          <td>{{ amt_fluc['amt_fluctuations_update_at'].strftime('%Y/%m/%d %H:%M:%S') }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
