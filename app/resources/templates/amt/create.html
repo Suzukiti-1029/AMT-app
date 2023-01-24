@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}収支記録作成{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <dev>
+      <label for="date">日付</label>
+      <input type="date" name="date" id="date" required>
+    </dev>
+
+    <br>
+
+    <dev>
+      <label for="amount">金額(円)</label>
+      <input type="number" name="amount", id="amount" required>
+    </dev>
+
+    <br>
+
+    <dev>
+      <label for="purpose">用途</label>
+      <input type="text" name="purpose" id="purpose" required>
+    </dev>
+
+    <br>
+
+    <dev>
+      <label for="note">メモ</label>
+      <textarea name="note" id="note"></textarea>
+    </dev>
+
+    <br>
+
+    <input type="submit" value="作成">
+  </form>
+{% endblock %}
