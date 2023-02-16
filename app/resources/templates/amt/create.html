@@ -1,40 +1,40 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}収支記録作成{% endblock %}</h1>
+  <h1 class="h2">{% block title %}収支記録作成{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <a href="{{ url_for('amt.index') }}">一覧に戻る</a>
+  <a class="btn btn-link btn-sm mb-2" href="{{ url_for('amt.index') }}">一覧に戻る</a>
   <form method="post">
-    <dev>
-      <label for="f_date">日付</label>
-      <input type="date" name="f_date" id="f_date" required>
-    </dev>
+    <div class="row mb-3">
+      <label for="f_date" class="col-sm-2 col-form-label">日付</label>
+      <div class="col-sm-2">
+        <input type="date" name="f_date" id="f_date" class="form-control" value="{{ request.form['f_date'] }}" required>
+      </div>
+    </div>
 
-    <br>
+    <div class="row mb-3">
+      <label for="f_amount" class="col-sm-2 col-form-label">金額(円)</label>
+      <div class="col-sm-2">
+        <input type="number" name="f_amount", id="f_amount" class="form-control" value="{{ request.form['f_amount'] }}" required>
+      </div>
+    </div>
 
-    <dev>
-      <label for="f_amount">金額(円)</label>
-      <input type="number" name="f_amount", id="f_amount" required>
-    </dev>
+    <div class="row mb-3">
+      <label for="f_purpose" class="col-sm-2 col-form-label">用途</label>
+      <div class="col-sm-4">
+        <input type="text" name="f_purpose" id="f_purpose" class="form-control" value="{{ request.form['f_purpose'] }}" required>
+      </div>
+    </div>
 
-    <br>
+    <div class="row mb-3">
+      <label for="f_note" class="col-sm-2 col-form-label">メモ</label>
+      <div class="col-sm-4">
+        <textarea name="f_note" id="f_note" class="form-control" rows="4">{{ request.form['f_note'] }}</textarea>
+      </div>
+    </div>
 
-    <dev>
-      <label for="f_purpose">用途</label>
-      <input type="text" name="f_purpose" id="f_purpose" required>
-    </dev>
-
-    <br>
-
-    <dev>
-      <label for="f_note">メモ</label>
-      <textarea name="f_note" id="f_note"></textarea>
-    </dev>
-
-    <br>
-
-    <input type="submit" value="作成">
+    <button type="submit" class="btn btn-primary">作成</button>
   </form>
 {% endblock %}

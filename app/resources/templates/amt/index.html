@@ -1,27 +1,36 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}収支記録一覧{% endblock %}</h1>
+  <h1 class="h2">{% block title %}収支記録一覧{% endblock %}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary">menu1-1</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary">menu1-2</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      menu2
+    </button>
+  </div>
 {% endblock %}
 
 {% block content %}
-  <a href="{{ url_for('amt.create') }}">記録作成</a>
-  <table>
+  <a class="btn btn-primary btn-sm mb-2" href="{{ url_for('amt.create') }}">記録作成</a>
+  <table class="table table-hover table-sm table-bordered">
     <thead>
       <tr>
-        <th>No.</th>
-        <th>日付</th>
-        <th>金額(円)</th>
-        <th>用途</th>
-        <th>メモ</th>
-        <th>作成時間</th>
-        <th>更新時間</th>
+        <th scope="col">No.</th>
+        <th scope="col">日付</th>
+        <th scope="col">金額(円)</th>
+        <th scope="col">用途</th>
+        <th scope="col">メモ</th>
+        <th scope="col">作成時間</th>
+        <th scope="col">更新時間</th>
       </tr>
     </thead>
     <tbody>
       {% for amt_fluc in amt_flucs %}
         <tr>
-          <td>{{ amt_fluc['amt_fluctuations_id'] }}</td>
+          <th scope="row">{{ amt_fluc['amt_fluctuations_id'] }}</th>
           <td>{{ amt_fluc['amt_fluctuations_date'].strftime('%Y/%m/%d') }}</td>
           <td>{{ amt_fluc['amt_fluctuations_amount'] }}</td>
           <td>{{ amt_fluc['amt_fluctuations_purpose'] }}</td>
