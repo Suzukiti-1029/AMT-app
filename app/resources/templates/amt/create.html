@@ -9,28 +9,28 @@
   <form method="post">
     <dev>
       <label for="f_date">日付</label>
-      <input type="date" name="f_date" id="f_date" required>
+      <input type="date" name="f_date" id="f_date" value="{{ request.form['f_date'] }}" required>
     </dev>
 
     <br>
 
     <dev>
       <label for="f_amount">金額(円)</label>
-      <input type="number" name="f_amount", id="f_amount" required>
+      <input type="number" name="f_amount", id="f_amount" value="{{ request.form['f_amount'] }}" required>
     </dev>
 
     <br>
 
     <dev>
       <label for="f_purpose">用途</label>
-      <input type="text" name="f_purpose" id="f_purpose" required>
+      <input type="text" name="f_purpose" id="f_purpose" value="{{ request.form['f_purpose'] }}" required>
     </dev>
 
     <br>
 
     <dev>
       <label for="f_note">メモ</label>
-      <textarea name="f_note" id="f_note"></textarea>
+      <textarea name="f_note" id="f_note" value="{{ request.form['f_note'] }}"></textarea>
     </dev>
 
     <br>

@@ -19,15 +19,16 @@ def create():
     f_amount = request.form['f_amount']
     f_purpose = request.form['f_purpose']
     f_note = request.form['f_note']
-    error = None
+    errs = []
     if not f_date:
-      error = '「日付」を入力してください'
+      errs += ['「日付」を入力してください']
     if not f_amount:
-      error = '「金額(円)」を入力してください'
+      errs += ['「金額(円)」を入力してください']
     if not f_purpose:
-      error = '「用途」を入力してください'
-    if error is not None:
-      flash(error)
+      errs += ['「用途」を入力してください']
+
+    if errs != []:
+      [flash(err) for err in errs]
     else:
       fluc = Amt_fluctuations(f_date, f_purpose, f_amount, f_note)
       db.session.add(fluc)
