@@ -6,7 +6,12 @@ import app.models
 import secrets
 
 def create_app(test_config=None):
-  app = Flask(__name__, instance_relative_config=True)
+  app = Flask(
+    __name__,
+    instance_relative_config=True,
+    static_folder='resources/static',
+    template_folder="resources/templates"
+  )
   app.config.from_mapping( # TODO デプロイ：設定ファイルを外部に分離
     SECRET_KEY='256133',
     SQLALCHEMY_DATABASE_URI='mysql+pymysql://{user}:{password}@{host}/{db_name}?charset=utf8'.format(**{
@@ -33,5 +38,8 @@ def create_app(test_config=None):
     pass
 
   init_db(app)
+
+  from .controller import amt
+  app.register_blueprint(amt.bp)
 
   return app
