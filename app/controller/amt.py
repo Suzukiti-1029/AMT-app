@@ -10,7 +10,8 @@ bp = Blueprint('amt', __name__, url_prefix='/amt')
 @bp.route('/')
 def index():
   amt_flucs = Amt_fluctuations.query.all()
-  return render_template('amt/index.html', amt_flucs=amt_flucs)
+  total_amount = sum([amt_fluc.amt_fluctuations_amount for amt_fluc in amt_flucs])
+  return render_template('amt/index.html', amt_flucs=amt_flucs, total_amount=total_amount)
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
