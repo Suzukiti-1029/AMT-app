@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1 class="h2">{% block title %}収支記録編集{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <a class="btn btn-link btn-sm mb-2" href="{{ url_for('amt.index') }}">一覧に戻る</a>
+  <form method="post">
+    <div class="row mb-3">
+      <label for="f_date" class="col-sm-2 col-form-label">日付</label>
+      <div class="col-sm-2">
+        <input type="date" name="f_date" id="f_date" class="form-control"
+          value="{{ request.form['f_date'] or amt_fluc['amt_fluctuations_date'] }}" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="f_amount" class="col-sm-2 col-form-label">金額(円)</label>
+      <div class="col-sm-2">
+        <input type="number" name="f_amount", id="f_amount" class="form-control"
+          value="{{ request.form['f_amount'] or amt_fluc['amt_fluctuations_amount'] }}" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="f_purpose" class="col-sm-2 col-form-label">用途</label>
+      <div class="col-sm-4">
+        <input type="text" name="f_purpose" id="f_purpose" class="form-control"
+          value="{{ request.form['f_purpose'] or amt_fluc['amt_fluctuations_purpose'] }}" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="f_note" class="col-sm-2 col-form-label">メモ</label>
+      <div class="col-sm-4">
+        <textarea name="f_note" id="f_note" class="form-control"
+          rows="4">{{ request.form['f_note'] or amt_fluc['amt_fluctuations_note'] }}</textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">更新</button>
+  </form>
+{% endblock %}

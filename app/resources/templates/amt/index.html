@@ -25,6 +25,7 @@
         <th scope="col">メモ</th>
         <th scope="col">作成時間</th>
         <th scope="col">更新時間</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,9 @@
           <td>{{ amt_fluc['amt_fluctuations_note'] }}</td>
           <td>{{ amt_fluc['amt_fluctuations_create_at'].strftime('%Y/%m/%d %H:%M:%S') }}</td>
           <td>{{ amt_fluc['amt_fluctuations_update_at'].strftime('%Y/%m/%d %H:%M:%S') }}</td>
+          <td><a class="btn btn-primary btn-sm mb-2"
+            href="{{ url_for('amt.update', id=amt_fluc['amt_fluctuations_id']) }}">編集</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

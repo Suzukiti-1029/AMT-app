@@ -36,3 +36,30 @@ def create():
       db.session.commit()
       return redirect(url_for('amt.index'))
   return render_template('amt/create.html')
+
+@bp.route('/update/<int:id>', methods=('GET', 'POST'))
+def update(id):
+  amt_fluc = Amt_fluctuations.query.get(id)
+  if request.method == 'POST':
+    f_date = request.form['f_date']
+    f_amount = request.form['f_amount']
+    f_purpose = request.form['f_purpose']
+    f_note = request.form['f_note']
+    errs = []
+    if not f_date:
+      errs += ['「日付」を入力してください']
+    if not f_amount:
+      errs += ['「金額(円)」を入力してください']
+    if not f_purpose:
+      errs += ['「用途」を入力してください']
+
+    if errs != []:
+      [flash(err) for err in errs]
+    else:
+      amt_fluc.amt_fluctuations_date = f_date
+      amt_fluc.amt_fluctuations_amount = f_amount
+      amt_fluc.amt_fluctuations_purpose = f_purpose
+      amt_fluc.amt_fluctuations_note = f_note
+      db.session.commit()
+      return redirect(url_for('amt.index'))
+  return render_template('amt/update.html', amt_fluc=amt_fluc)
